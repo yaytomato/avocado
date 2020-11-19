@@ -10,6 +10,7 @@ import WeatherUtil from "../components/WeatherUtil";
 import NavBar from "../components/NavBar";
 import ArticleCardList from "../components/ArticleCardList";
 import Footer from "../components/Footer";
+import { getLatestReleaseDate } from "../helper";
 import { index as contents } from "../constants/home";
 import { Article } from "../constants/types";
 
@@ -20,14 +21,7 @@ const Home: React.FunctionComponent<Props> = ({}) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [releaseDate, setReleaseDate] = useState<string>("");
   useEffect(() => {
-    const today = moment();
-    const yesterday = moment().add(-1, "days");
-
-    // ANCHOR: update articles every odd day of year
-    const releaseDate =
-      today.dayOfYear() % 2
-        ? today.format("YYYY-MM-DD")
-        : yesterday.format("YYYY-MM-DD");
+    const releaseDate = getLatestReleaseDate();
 
     axios.get(contents.apiUrl + releaseDate).then((res) => {
       setArticles(res.data);
@@ -38,17 +32,21 @@ const Home: React.FunctionComponent<Props> = ({}) => {
   // NOTE: loading
   if (!releaseDate) return null;
   return (
-    <div>
-      <SearchBar />
-      <DateUtil />
-      <TimeUtil />
-      <WeatherUtil />
+    <React.Fragment>
+      <section>
+        <SearchBar />
+        <DateUtil />
+        <TimeUtil />
+        <WeatherUtil />
+      </section>
 
-      <NavBar releaseDate={releaseDate} />
-      <ArticleCardList articles={articles} />
+      <section>
+        <NavBar releaseDate={releaseDate} />
+        <ArticleCardList articles={articles} />
+      </section>
 
       <Footer />
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -10,16 +10,16 @@
     mask-position: center;
 }
 .thumbnail-0 {
-    mask-image: url("../constants/imgs/mask1.svg");
+    mask-image: url("../public/mask1.svg");
 }
 .thumbnail-1 {
-    mask-image: url("../constants/imgs/mask2.svg");
+    mask-image: url("../public/mask2.svg");
 }
 .thumbnail-2 {
-    mask-image: url("../constants/imgs/mask3.svg");
+    mask-image: url("../public/mask3.svg");
 }
 .thumbnail-3 {
-    mask-image: url("../constants/imgs/mask4.svg");
+    mask-image: url("../public/mask4.svg");
 }
 
 @tailwind utilities;
