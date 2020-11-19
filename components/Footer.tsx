@@ -1,6 +1,6 @@
 import React from "react";
 
-import contents from "../constants/footer";
+import { footer as contents } from "../constants/global";
 
 const Footer: React.FunctionComponent = () => (
   <div>
