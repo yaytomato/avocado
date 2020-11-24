@@ -13,6 +13,7 @@ interface Props {}
 
 const Archive: React.FunctionComponent<Props> = ({}) => {
   // ANCHOR: fetch articles
+  const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState<Article[]>([]);
   useEffect(() => {
     axios.get(contents.apiUrl).then((res) => {
@@ -21,11 +22,12 @@ const Archive: React.FunctionComponent<Props> = ({}) => {
         return moment(article.releaseDate).isBefore(latestReleaseDate);
       });
       setArticles(filtered);
+      setLoading(false);
     });
   }, []);
 
   // NOTE: loading
-  if (!articles.length) return null;
+  if (loading) return null;
   return (
     <React.Fragment>
       <section>
@@ -40,7 +42,7 @@ const Archive: React.FunctionComponent<Props> = ({}) => {
           </div>
         </Link>
 
-        <ArticleCardList articles={articles} />
+        <ArticleCardList articles={articles} randomMask />
       </section>
 
       <Footer />

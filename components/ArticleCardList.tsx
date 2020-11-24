@@ -5,12 +5,16 @@ import { Article } from "../constants/types";
 
 interface Props {
   articles: Article[];
+  randomMask?: boolean;
 }
 
-const ArticleCardList: React.FunctionComponent<Props> = ({ articles }) => (
+const ArticleCardList: React.FunctionComponent<Props> = ({
+  articles,
+  randomMask,
+}) => (
   <div className="flex flex-wrap">
     {articles.map((article, i) => (
-      <ArticleCard key={i} id={i} article={article} />
+      <ArticleCard key={i} id={i} article={article} randomMask={randomMask} />
     ))}
   </div>
 );
