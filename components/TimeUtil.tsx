@@ -1,7 +1,12 @@
 import React from "react";
 
-const TimeUtil: React.FunctionComponent = () => {
-  return <div>time</div>;
-};
+import { getTimeMeridiem, getHourInKor, getMinuteInKor } from "../helper";
+
+const TimeUtil: React.FunctionComponent = () => (
+  <div>
+    {getTimeMeridiem()} {getHourInKor()}{" "}
+    <span className="font-bold">{getMinuteInKor()}</span>분
+  </div>
+);
 
 export default TimeUtil;

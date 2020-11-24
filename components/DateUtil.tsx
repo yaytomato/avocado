@@ -1,17 +1,12 @@
 import React from "react";
-import moment from "moment";
-import "moment/locale/ko";
 
-import { monthInKor, getWeekNumInKor } from "../helper";
+import { getMonthInKor, getWeekNumInKor, getWeekdayInKor } from "../helper";
 
-const DateUtil: React.FunctionComponent = () => {
-  const now = moment();
-
-  return (
-    <div>
-      {monthInKor[now.month()]} {getWeekNumInKor(now)} {now.format("dddd")}
-    </div>
-  );
-};
+const DateUtil: React.FunctionComponent = () => (
+  <div>
+    {getMonthInKor()} {getWeekNumInKor()}{" "}
+    <span className="font-bold">{getWeekdayInKor()}</span>
+  </div>
+);
 
 export default DateUtil;
