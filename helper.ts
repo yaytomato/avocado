@@ -1,9 +1,9 @@
 import moment from "moment";
 import "moment/locale/ko";
 
-export const getLatestReleaseDate = (): string => {
-  const today = moment();
-  const yesterday = moment().add(-1, "days");
+export const getLatestReleaseDate = (timeStr: string): string => {
+  const today = moment(timeStr);
+  const yesterday = moment(timeStr).add(-1, "days");
 
   // ANCHOR: update articles every odd day of year
   return today.dayOfYear() % 2
@@ -26,8 +26,8 @@ const monthInKor = [
   "십이월",
 ];
 
-export const getMonthInKor = (): string => {
-  return monthInKor[moment().month()];
+export const getMonthInKor = (timeStr: string): string => {
+  return monthInKor[moment(timeStr).month()];
 };
 
 const weekNumInKor = [
@@ -39,34 +39,34 @@ const weekNumInKor = [
   "마지막",
 ];
 
-export const getWeekNumInKor = (): string => {
-  const now = moment();
-  let firstWeekdayOfMonth = moment().startOf("month").day(now.day());
-  if (firstWeekdayOfMonth.month() < now.month())
+export const getWeekNumInKor = (timeStr: string): string => {
+  const today = moment(timeStr);
+  let firstWeekdayOfMonth = moment(timeStr).startOf("month").day(today.day());
+  if (firstWeekdayOfMonth.month() < today.month())
     firstWeekdayOfMonth = firstWeekdayOfMonth.add(1, "week");
 
-  let weekNum = now.diff(firstWeekdayOfMonth, "weeks");
+  let weekNum = today.diff(firstWeekdayOfMonth, "weeks");
 
-  let lastWeekdayOfMonth = moment().endOf("month").day(now.day());
-  if (lastWeekdayOfMonth.month() > now.month())
+  let lastWeekdayOfMonth = moment(timeStr).endOf("month").day(today.day());
+  if (lastWeekdayOfMonth.month() > today.month())
     lastWeekdayOfMonth = lastWeekdayOfMonth.subtract(1, "week");
 
-  if (now.date() === lastWeekdayOfMonth.date())
+  if (today.date() === lastWeekdayOfMonth.date())
     weekNum = weekNumInKor.length - 1;
 
   return weekNumInKor[weekNum];
 };
 
-export const getWeekdayInKor = (): string => {
-  return moment().format("dddd");
+export const getWeekdayInKor = (timeStr: string): string => {
+  return moment(timeStr).format("dddd");
 };
 
-export const getTimeMeridiem = (): string => {
-  return moment().format("A");
+export const getTimeMeridiem = (timeStr: string): string => {
+  return moment(timeStr).format("A");
 };
 
-export const getHourInKor = (): string => {
-  const hour = parseInt(moment().format("h"));
+export const getHourInKor = (timeStr: string): string => {
+  const hour = parseInt(moment(timeStr).format("h"));
   switch (hour) {
     case 1:
       return "한시";
@@ -98,8 +98,8 @@ export const getHourInKor = (): string => {
 
 const numInKor = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
 
-export const getMinuteInKor = (): string => {
-  const minute = moment().format("mm");
+export const getMinuteInKor = (timeStr: string): string => {
+  const minute = moment(timeStr).format("mm");
   const tensDigit = parseInt(minute[0]);
   const onesDigit = parseInt(minute[1]);
   if (tensDigit === 0 && onesDigit === 0) {
