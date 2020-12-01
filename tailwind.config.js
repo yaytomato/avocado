@@ -28,6 +28,11 @@ module.exports = {
       },
       colors: {
         "yellow-100": "#fff8ed",
+        "yellow-300": "#ffe6bf",
+        "pink-100": "#ffeceb",
+        "pink-300": "#fdafab",
+        "blue-100": "#f2fdff",
+        "blue-300": "#b6e3ea",
         "gray-500": "#969696",
         "gray-600": "#595F6D",
       },
