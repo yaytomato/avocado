@@ -1,7 +1,7 @@
 export const index = {
   logo: "/logo.png",
   apiUrl:
-    "https://sheet2api.com/v1/8ruDgeLPRKuh/avocado-article-list/Sheet1?releaseDate=",
+    "https://sheet2api.com/v1/2jmyfwPQEeDN/avocado-article-list/Sheet1?releaseDate=",
 };
 
 export const navBar = {
