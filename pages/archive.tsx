@@ -46,13 +46,13 @@ const Archive: React.FunctionComponent<Props> = ({}) => {
     <Layout loading={loading}>
       <section>
         <Link href="/">
-          <div className="flex">
+          <div className="flex items-center mx-25 pt-13.5">
             <img
               src={contents.toHome}
               alt="홈으로 가기"
-              className="cursor-pointer"
+              className="h-5 w-5 cursor-pointer"
             />
-            <h1 className="cursor-pointer">{contents.heading}</h1>
+            <h1 className="ml-3 text-2xl font-extrabold cursor-pointer">{contents.heading}</h1>
           </div>
         </Link>
 
