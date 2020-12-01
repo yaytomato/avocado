@@ -66,4 +66,10 @@ button:focus {
     }
 }
 
+/* ANCHOR: loading */
+.loading-container {
+    @apply h-screen flex justify-center items-center;
+    min-width: 520px;
+}
+
 @tailwind utilities;
