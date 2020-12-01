@@ -37,8 +37,8 @@ const WeatherUtil: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    const latitude = parseInt(localStorage.getItem("latitude"));
-    const longitude = parseInt(localStorage.getItem("longitude"));
+    const latitude = parseFloat(localStorage.getItem("latitude"));
+    const longitude = parseFloat(localStorage.getItem("longitude"));
     if (latitude && longitude) {
       fetchWeather({ latitude, longitude });
     }
