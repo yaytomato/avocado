@@ -1,4 +1,5 @@
 export const index = {
+  logo: "/ico-back.svg",
   apiUrl:
     "https://sheet2api.com/v1/8ruDgeLPRKuh/avocado-article-list/Sheet1?releaseDate=",
 };

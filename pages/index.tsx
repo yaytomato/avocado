@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 import Layout from "../components/Layout";
+import BgColorUtil from "../components/BgColorUtil";
 import SearchBar from "../components/SearchBar";
 import DateUtil from "../components/DateUtil";
 import TimeUtil from "../components/TimeUtil";
@@ -38,6 +39,11 @@ const Home: React.FunctionComponent<Props> = () => {
 
   return (
     <Layout loading={!releaseDate}>
+      <section>
+        <BgColorUtil />
+        <img src={contents.logo} alt="아보카도 로고" />
+      </section>
+
       <section>
         <SearchBar />
         <DateUtil />
