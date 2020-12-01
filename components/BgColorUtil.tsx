@@ -15,23 +15,23 @@ const BgColorUtil: React.FC = () => {
   };
 
   const getBlackDotClassName = (id) => {
-    return id === bgColorId ? "w-5 h-5 bg-black rounded-full" : "hidden";
+    return id === bgColorId ? "w-1.5 h-1.5 bg-black rounded-full" : "hidden";
   };
 
-  const BgChangeBtn = ({ id, color }) => (
+  const BgChangeBtn = ({ id, className }) => (
     <div
       onClick={() => changeBgColor(id)}
-      className={`flex justify-center items-center w-10 h-10 rounded-full ${color}`}
+      className={`flex justify-center items-center w-4 h-4 rounded-full cursor-pointer ${className}`}
     >
       <div className={getBlackDotClassName(id)}></div>
     </div>
   );
 
   return (
-    <div className="flex">
-      <BgChangeBtn id={0} color="bg-yellow-300" />
-      <BgChangeBtn id={1} color="bg-pink-300" />
-      <BgChangeBtn id={2} color="bg-blue-300" />
+    <div className="pt-5 flex justify-center">
+      <BgChangeBtn id={0} className="bg-yellow-300" />
+      <BgChangeBtn id={1} className="bg-pink-300 ml-1.5" />
+      <BgChangeBtn id={2} className="bg-blue-300 ml-1.5" />
     </div>
   );
 };

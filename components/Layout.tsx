@@ -21,7 +21,7 @@ const Layout: React.FC<Props> = ({ loading, children }) => {
   }, []);
 
   return (
-    <div className={bgColor[bgColorId]}>
+    <div className={`min-h-screen ${bgColor[bgColorId]}`}>
       <Timer />
 
       {loading ? <Loading /> : children}

@@ -11,7 +11,21 @@
     @apply font-nanummyeongjo text-xl;
 }
 
+body {
+    @apply font-sm;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+}
+
 @tailwind components;
+
+/* ANCHOR: global */
+.min-h-screen {
+    min-height: 100vh;
+}
 
 .thumbnail-0,
 .thumbnail-1,
@@ -32,6 +46,14 @@
 }
 .thumbnail-3 {
     mask-image: url("../public/mask4.svg");
+}
+
+/* ANCHOR: home */
+.search-bar {
+    @apply mt-5 w-full h-16 border border-black p-4 pl-12 bg-transparent bg-no-repeat;
+    background-image: url("../public/ico-search.png");
+    background-position: left 25px top 50%;
+    background-size: 11px 11px;
 }
 
 @tailwind utilities;

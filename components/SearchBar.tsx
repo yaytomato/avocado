@@ -8,10 +8,10 @@ import { searchBar as contents } from "../constants/home";
 const SearchBar: React.FunctionComponent = () => {
   const [platform, setPlatform] = useState<string>("naver");
 
-  const PlatformBtn = ({ id, children }) => (
+  const PlatformBtn = ({ id, children, className = "" }) => (
     <p
-      className={`cursor-pointer ${
-        id === platform ? "font-black" : "font-gray"
+      className={`cursor-pointer ${className} ${
+        id === platform ? "text-black font-extrabold" : "text-gray-500"
       }`}
       onClick={() => setPlatform(id)}
     >
@@ -24,10 +24,12 @@ const SearchBar: React.FunctionComponent = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className="mt-7 w-170 mx-auto">
       <div className="flex">
         <PlatformBtn id="naver">네이버</PlatformBtn>
-        <PlatformBtn id="google">구글</PlatformBtn>
+        <PlatformBtn id="google" className="ml-5">
+          구글
+        </PlatformBtn>
       </div>
 
       <Formik
@@ -38,11 +40,11 @@ const SearchBar: React.FunctionComponent = () => {
       >
         {() => (
           <Form>
-            <Field type="text" name="keyword" />
+            <Field type="text" name="keyword" className="search-bar" />
           </Form>
         )}
       </Formik>
-    </React.Fragment>
+    </div>
   );
 };
 

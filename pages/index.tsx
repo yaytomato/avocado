@@ -41,14 +41,20 @@ const Home: React.FunctionComponent<Props> = () => {
     <Layout loading={!releaseDate}>
       <section>
         <BgColorUtil />
-        <img src={contents.logo} alt="아보카도 로고" />
+        <img
+          className="h-27 mt-13.5 mx-auto cursor-pointer"
+          src={contents.logo}
+          alt="아보카도 로고"
+        />
       </section>
 
       <section>
         <SearchBar />
-        <DateUtil />
-        <TimeUtil />
-        <WeatherUtil />
+        <div className="mt-7 flex w-165 mx-auto justify-between">
+          <DateUtil />
+          <TimeUtil />
+          <WeatherUtil />
+        </div>
       </section>
 
       <section>

@@ -7,9 +7,9 @@ const Loading: React.FC = () => (
     <img src={contents.logo} alt="아보카도 로고" className="h-64" />
     <div className="ml-24">
       <p className="font-sm">
-        {contents.subheading} <span className="font-bold">아보카도</span>
+        {contents.subheading} <span className="font-extrabold">아보카도</span>
       </p>
-      <h1 className="font-xl mt-1">{contents.heading}</h1>
+      <h1 className="font-xl font-extrabold mt-1">{contents.heading}</h1>
     </div>
   </div>
 );

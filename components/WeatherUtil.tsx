@@ -3,41 +3,42 @@ import axios from "axios";
 
 import { getWeatherInKor } from "../helper";
 
+import { weatherUtil as contents } from "../constants/home";
+
 const WeatherUtil: React.FunctionComponent = () => {
   let mounted = true;
-  const [weather, setWeather] = useState("");
+  const [temperature, setTemperature] = useState("");
+  const [description, setDescription] = useState("");
 
-  const fetchUserPositionWeather = (position) => {
+  const fetchWeather = async (position) => {
     const { latitude, longitude } = position.coords;
     if (mounted) {
-      fetchWeather(latitude, longitude);
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=metric&lang=kr`
+        );
+
+        const t = Math.round(response.data.main.temp);
+        setTemperature(`현재 ${t} `);
+        const d = getWeatherInKor(t);
+        setDescription(d);
+      } catch (error) {
+        setDescription("날씨를 가져올 수 없었어요");
+      }
     }
   };
 
-  const fetchSeoulWeather = () => {
+  const didNotFetchWeather = () => {
     if (mounted) {
-      setWeather("위치정보에 동의해주세요! 날씨를 알려드릴게요");
-    }
-  };
-
-  const fetchWeather = async (latitude, longitude) => {
-    try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=metric&lang=kr`
-      );
-
-      const weather = getWeatherInKor(response.data.main.feels_like);
-      setWeather(weather);
-    } catch (error) {
-      setWeather("날씨를 가져올 수 없었어요");
+      setDescription("위치정보에 동의해주세요! 날씨를 알려드릴게요");
     }
   };
 
   useEffect(() => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
-        fetchUserPositionWeather,
-        fetchSeoulWeather
+        fetchWeather,
+        didNotFetchWeather
       );
     }
 
@@ -46,7 +47,15 @@ const WeatherUtil: React.FunctionComponent = () => {
     };
   }, []);
 
-  return <div>{weather}</div>;
+  return (
+    <div className="w-50 flex items-center">
+      <img src={contents.icon} alt="날씨 아이콘" className="h-3 w-3 mr-3" />
+      <p>
+        {temperature}
+        <span className="font-extrabold">{description}</span>
+      </p>
+    </div>
+  );
 };
 
 export default WeatherUtil;
