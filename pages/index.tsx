@@ -16,6 +16,7 @@ import Footer from "../components/Footer";
 import { timeSelector } from "../reducers/time";
 import { getLatestReleaseDate } from "../helper";
 import { index as contents } from "../constants/home";
+import { articlesAPI } from "../constants/global";
 import { Article } from "../constants/types";
 
 interface Props {}
@@ -28,11 +29,31 @@ const Home: React.FunctionComponent<Props> = () => {
 
   useEffect(() => {
     if (now) {
-      const releaseDate = getLatestReleaseDate(now);
+      const lrd = getLatestReleaseDate(now);
+      axios.get(articlesAPI).then((res) => {
+        const cells = res.data.feed.entry;
+        const filtered = [];
+        for (let i = 6; i < cells.length; i += 6) {
+          const rd = cells[i].content.$t;
+          if (rd === lrd) {
+            const category = cells[i + 1].content.$t;
+            filtered.push({
+              releaseDate: rd,
+              category,
+              title: cells[i + 2].content.$t,
+              author: cells[i + 3].content.$t,
+              url: cells[i + 4].content.$t,
+              img: cells[i + 5].content.$t,
+            });
+            // NOTE: end traversing when all the latest articles are pushed
+            if (category === "잘 움직이기") {
+              i = cells.length;
+            }
+          }
+        }
 
-      axios.get(contents.apiUrl + releaseDate).then((res) => {
-        setArticles(res.data);
-        setReleaseDate(releaseDate);
+        setArticles(filtered);
+        setReleaseDate(lrd);
       });
     }
   }, [now]);

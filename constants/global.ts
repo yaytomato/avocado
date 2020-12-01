@@ -1,3 +1,5 @@
+export const articlesAPI = `https://spreadsheets.google.com/feeds/cells/${process.env.NEXT_PUBLIC_ARTICLES_API_KEY}/1/public/full?alt=json`;
+
 export const footer = {
   toSurvey: "아보카도가 마음에 드셨나요?",
 };
