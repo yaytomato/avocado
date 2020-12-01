@@ -16,6 +16,8 @@ import { Article } from "../constants/types";
 interface Props {}
 
 const Archive: React.FunctionComponent<Props> = ({}) => {
+  let mounted = true;
+
   // ANCHOR: fetch articles
   const { now } = useSelector(timeSelector);
   const [loading, setLoading] = useState(true);
@@ -27,10 +29,17 @@ const Archive: React.FunctionComponent<Props> = ({}) => {
         const filtered = res.data.filter((article) => {
           return moment(article.releaseDate).isBefore(latestReleaseDate);
         });
-        setArticles(filtered);
-        setLoading(false);
+
+        if (mounted) {
+          setArticles(filtered);
+          setLoading(false);
+        }
       });
     }
+
+    return () => {
+      mounted = false;
+    };
   }, [now]);
 
   return (

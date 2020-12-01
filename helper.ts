@@ -116,3 +116,17 @@ export const getMinuteInKor = (timeStr: string): string => {
   minuteInKor += numInKor[onesDigit];
   return minuteInKor;
 };
+
+export const getWeatherInKor = (temperature: number): string => {
+  if (temperature < 0) {
+    return "영하 온도 어우 추워";
+  } else if (temperature < 5) {
+    return "5도도 안되네 어우 추워";
+  } else if (temperature < 10) {
+    return "10도도 안되네 어우 추워";
+  } else if (temperature < 15) {
+    return "15도도 안되네 어우 추워";
+  } else {
+    return "15도는 넘네 어우 추워";
+  }
+};
