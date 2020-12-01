@@ -10,8 +10,10 @@ const WeatherUtil: React.FunctionComponent = () => {
   const [temperature, setTemperature] = useState("");
   const [description, setDescription] = useState("");
 
-  const fetchWeather = async (position) => {
-    const { latitude, longitude } = position.coords;
+  const fetchWeather = async ({ latitude, longitude }) => {
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
+
     if (mounted) {
       try {
         const response = await axios.get(
@@ -35,11 +37,21 @@ const WeatherUtil: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
+    const latitude = parseInt(localStorage.getItem("latitude"));
+    const longitude = parseInt(localStorage.getItem("longitude"));
+    if (latitude && longitude) {
+      fetchWeather({ latitude, longitude });
+    }
+
     if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition(
-        fetchWeather,
-        didNotFetchWeather
-      );
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        if (
+          position.coords.latitude !== latitude ||
+          position.coords.longitude !== longitude
+        ) {
+          fetchWeather(position.coords);
+        }
+      }, didNotFetchWeather);
     }
 
     return () => {
