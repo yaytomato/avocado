@@ -56,4 +56,14 @@ button:focus {
     background-size: 11px 11px;
 }
 
+.nav-bar {
+    @apply mt-20 mx-25 flex justify-between items-center;
+}
+@screen sm {
+    .nav-bar {
+        @apply mx-auto;
+        width: 680px;
+    }
+}
+
 @tailwind utilities;

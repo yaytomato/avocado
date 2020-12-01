@@ -12,7 +12,7 @@ const ArticleCardList: React.FunctionComponent<Props> = ({
   articles,
   randomMask,
 }) => (
-  <div className="flex flex-wrap justify-between mx-25 py-20">
+  <div className="flex flex-wrap justify-between mx-32 mt-10 pb-20">
     {articles.map((article, i) => (
       <ArticleCard key={i} id={i} article={article} randomMask={randomMask} />
     ))}

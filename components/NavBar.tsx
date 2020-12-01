@@ -13,7 +13,7 @@ const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
   const isTodayReleaseDate = today.isSame(moment(releaseDate), "d");
 
   return (
-    <div className="mt-20 mx-25 flex justify-between items-center">
+    <div className="nav-bar">
       <div className="flex items-center">
         <p className="text-2xl">
           <span className="font-extrabold">이틀</span>마다 돌아오는{" "}

@@ -14,7 +14,7 @@ const ArticleCard: React.FunctionComponent<Props> = ({
   article: { url, img, title, category, author },
   randomMask = false,
 }) => (
-  <div className="text-center">
+  <div className="mt-10 text-center">
     <a href={url}>
       <img
         src={img}
