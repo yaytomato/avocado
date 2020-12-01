@@ -1,9 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Timer from "./Timer";
+import Loading from "./Loading";
 
-import { settingsSelector } from "../reducers/settings";
+import { settingsSelector, setBgColorId } from "../reducers/settings";
 import { bgColor } from "../constants/global";
 interface Props {
   loading: boolean;
@@ -11,15 +12,19 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ loading, children }) => {
+  const dispatch = useDispatch();
   const { bgColorId } = useSelector(settingsSelector);
 
-  const Loading = <div>loading...!</div>;
+  useEffect(() => {
+    const storedId = parseInt(localStorage.getItem("bg-color-id") ?? "0");
+    dispatch(setBgColorId(storedId));
+  }, []);
 
   return (
     <div className={bgColor[bgColorId]}>
       <Timer />
 
-      {loading ? Loading : children}
+      {loading ? <Loading /> : children}
     </div>
   );
 };

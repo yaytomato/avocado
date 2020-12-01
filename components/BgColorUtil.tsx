@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { settingsSelector, setBgColorId } from "../reducers/settings";
@@ -8,11 +8,6 @@ import { settingsSelector, setBgColorId } from "../reducers/settings";
 const BgColorUtil: React.FC = () => {
   const dispatch = useDispatch();
   const { bgColorId } = useSelector(settingsSelector);
-
-  useEffect(() => {
-    const storedId = parseInt(localStorage.getItem("bg-color-id") ?? "0");
-    dispatch(setBgColorId(storedId));
-  }, []);
 
   const changeBgColor = (newId) => {
     localStorage.setItem("bg-color-id", newId);
