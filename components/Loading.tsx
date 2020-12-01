@@ -3,13 +3,13 @@ import React from "react";
 import { loading as contents } from "../constants/global";
 
 const Loading: React.FC = () => (
-  <div className="flex">
-    <img src={contents.logo} alt="아보카도 로고" />
-    <div>
-      <p>
+  <div className="h-screen flex justify-center items-center">
+    <img src={contents.logo} alt="아보카도 로고" className="h-64" />
+    <div className="ml-24">
+      <p className="font-sm">
         {contents.subheading} <span className="font-bold">아보카도</span>
       </p>
-      <p>{contents.heading}</p>
+      <h1 className="font-xl mt-1">{contents.heading}</h1>
     </div>
   </div>
 );

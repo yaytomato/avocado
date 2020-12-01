@@ -1,4 +1,16 @@
+@import url("https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css");
+
 @tailwind base;
+
+/* ANCHOR: fonts */
+.font-sm {
+    @apply font-nanummyeongjo text-sm;
+}
+
+.font-xl {
+    @apply font-nanummyeongjo text-xl;
+}
+
 @tailwind components;
 
 .thumbnail-0,
