@@ -26,7 +26,9 @@ const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
       </div>
 
       <Link href="/archive">
-        <nav className="text-2xl text-gray-500 cursor-pointer">{contents.toArchive}</nav>
+        <nav className="text-2xl text-gray-500 cursor-pointer">
+          {contents.toArchive}
+        </nav>
       </Link>
     </div>
   );
