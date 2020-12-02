@@ -49,7 +49,7 @@ const isWeatherCached = () => {
   const prev = localStorage.getItem("temperature");
   if (prev) {
     const data = prev.split(" ");
-    const timestamp = moment(parseInt(data[1]));
+    const timestamp = moment(data[1]);
     const now = moment();
 
     // NOTE: cache weather data for 6 hours
