@@ -1,18 +1,22 @@
 import axios from "axios";
-import _ from "lodash";
+import moment from "moment";
 
 import { getWeatherInKor } from "../helper";
 
 export const getWeather = async (onFetch) => {
-  const prevCoords = getPrevCoords();
-  if (prevCoords.latitude && prevCoords.longitude) {
-    fetchWeather(prevCoords, onFetch);
-  }
+  loadPrevWeather(onFetch);
 
   if (window.navigator.geolocation) {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
-        if (!_.isEqual(prevCoords, position.coords)) {
+        const prevCoords = getPrevCoords();
+
+        // NOTE: fetch weather api only if coords changed or if weather caching expired
+        if (
+          Math.abs(prevCoords.latitude - position.coords.latitude) > 0.001 ||
+          Math.abs(prevCoords.longitude - position.coords.longitude) > 0.001 ||
+          !isWeatherCached()
+        ) {
           fetchWeather(position.coords, onFetch);
         }
       },
@@ -21,10 +25,41 @@ export const getWeather = async (onFetch) => {
   }
 };
 
+const loadPrevWeather = (onFetch) => {
+  const prev = localStorage.getItem("temperature");
+  if (prev) {
+    const data = prev.split(" ");
+    const weather = formatWeather(parseInt(data[0]));
+    onFetch(...weather);
+  }
+};
+
+const formatWeather = (temperature: number) => {
+  const description = getWeatherInKor(temperature);
+  return [`현재 ${temperature} `, description];
+};
+
 const getPrevCoords = () => {
   const latitude = parseFloat(localStorage.getItem("latitude"));
   const longitude = parseFloat(localStorage.getItem("longitude"));
   return { latitude, longitude };
+};
+
+const isWeatherCached = () => {
+  const prev = localStorage.getItem("temperature");
+  if (prev) {
+    const data = prev.split(" ");
+    const timestamp = moment(parseInt(data[1]));
+    const now = moment();
+
+    // NOTE: cache weather data for 6 hours
+    if (now.diff(timestamp, "h") > 6) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  return false;
 };
 
 const failToGetCoords = (onFetch) => {
@@ -37,11 +72,13 @@ const fetchWeather = async (coords, onFetch) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=metric&lang=kr`
     );
     const temperature = Math.round(response.data.main.temp);
-    const description = getWeatherInKor(temperature);
-    onFetch(`현재 ${temperature} `, description);
+    const weather = formatWeather(temperature);
+    onFetch(...weather);
 
     localStorage.setItem("latitude", coords.latitude);
-    localStorage.setItem("longitude", coords.latitude);
+    localStorage.setItem("longitude", coords.longitude);
+    const timestamp = moment().toISOString(true);
+    localStorage.setItem("temperature", `${temperature} ${timestamp}`);
   } catch (error) {
     failToFetchWeather(onFetch);
   }
