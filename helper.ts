@@ -123,10 +123,10 @@ export const getWeatherInKor = (temperature: number): string => {
   } else if (temperature < 5) {
     return "5도도 안되네 어 추워";
   } else if (temperature < 10) {
-    return "10도도 안되네 어 추워";
+    return "10도도 안돼 어추워";
   } else if (temperature < 15) {
-    return "15도도 안되네 어 추워";
+    return "15도도 안돼 어추워";
   } else {
-    return "15도는 넘네 어 추워";
+    return "15도는 넘네 어추워";
   }
 };
