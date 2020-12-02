@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 import ArticleCardList from "../components/ArticleCardList";
 import Footer from "../components/Footer";
 
-import { timeSelector } from "../reducers/time";
+import { dateSelector } from "../reducers/time";
 import { getLatestReleaseDate } from "../helper";
 import contents from "../constants/archive";
 import { articlesAPI } from "../constants/global";
@@ -19,16 +19,15 @@ interface Props {}
 const Archive: React.FunctionComponent<Props> = ({}) => {
   let mounted = true;
 
-  // ANCHOR: fetch articles
-  const { now } = useSelector(timeSelector);
+  // ANCHOR: fetch articles only when date changes
+  const today = useSelector(dateSelector);
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState<Article[]>([]);
   useEffect(() => {
-    if (now) {
+    if (today) {
       axios.get(articlesAPI).then((res) => {
-        const lrd = moment(getLatestReleaseDate(now));
+        const lrd = moment(getLatestReleaseDate(today));
         const cells = res.data.feed.entry;
-
         const filtered = [];
         let pushRest = false;
         for (let i = 6; i < cells.length; i += 6) {
@@ -57,7 +56,7 @@ const Archive: React.FunctionComponent<Props> = ({}) => {
     return () => {
       mounted = false;
     };
-  }, [now]);
+  }, [today]);
 
   return (
     <Layout loading={loading}>

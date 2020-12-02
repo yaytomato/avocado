@@ -7,14 +7,14 @@ import { getTimeMeridiem, getHourInKor, getMinuteInKor } from "../helper";
 import { timeUtil as contents } from "../constants/home";
 
 const TimeUtil: React.FunctionComponent = () => {
-  const { now } = useSelector(timeSelector);
+  const time = useSelector(timeSelector);
 
   return (
     <div className="flex items-center">
       <img src={contents.icon} alt="시간 아이콘" className="h-3 w-3 mr-3" />
       <p>
-        {getTimeMeridiem(now)} {getHourInKor(now)}{" "}
-        <span className="font-extrabold">{getMinuteInKor(now)}</span>분
+        {getTimeMeridiem(time)} {getHourInKor(time)}{" "}
+        <span className="font-extrabold">{getMinuteInKor(time)}</span>분
       </p>
     </div>
   );

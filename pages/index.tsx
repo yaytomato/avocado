@@ -13,7 +13,7 @@ import NavBar from "../components/NavBar";
 import ArticleCardList from "../components/ArticleCardList";
 import Footer from "../components/Footer";
 
-import { timeSelector } from "../reducers/time";
+import { dateSelector } from "../reducers/time";
 import { getLatestReleaseDate } from "../helper";
 import { index as contents } from "../constants/home";
 import { articlesAPI } from "../constants/global";
@@ -23,13 +23,13 @@ interface Props {}
 
 const Home: React.FunctionComponent<Props> = () => {
   // ANCHOR: fetch articles
-  const { now } = useSelector(timeSelector);
+  const today = useSelector(dateSelector);
   const [articles, setArticles] = useState<Article[]>([]);
   const [releaseDate, setReleaseDate] = useState<string>("");
 
   useEffect(() => {
-    if (now) {
-      const lrd = getLatestReleaseDate(now);
+    if (today) {
+      const lrd = getLatestReleaseDate(today);
       axios.get(articlesAPI).then((res) => {
         const cells = res.data.feed.entry;
         const filtered = [];
@@ -56,7 +56,7 @@ const Home: React.FunctionComponent<Props> = () => {
         setReleaseDate(lrd);
       });
     }
-  }, [now]);
+  }, [today]);
 
   return (
     <Layout loading={!releaseDate}>

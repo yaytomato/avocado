@@ -10,6 +10,7 @@ module.exports = {
     },
     screens: {
       sm: { max: "880px" },
+      lg: { min: "1376px" },
     },
     extend: {
       spacing: {

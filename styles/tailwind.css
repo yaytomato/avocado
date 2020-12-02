@@ -47,6 +47,19 @@ button:focus {
 .thumbnail-3 {
     mask-image: url("../public/mask4.svg");
 }
+.article-card-list {
+    @apply flex flex-wrap justify-between mx-32 mt-10 pb-20;
+}
+.article-card-list::after {
+    content: "";
+    @apply w-56;
+}
+@screen lg {
+    .article-card-list {
+        @apply mx-auto;
+        width: 1119px;
+    }
+}
 
 /* ANCHOR: home */
 .search-bar {
