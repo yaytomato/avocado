@@ -117,16 +117,27 @@ export const getMinuteInKor = (timeStr: string): string => {
   return minuteInKor;
 };
 
-export const getWeatherInKor = (temperature: number): string => {
+export const getWeatherInKor = (
+  temperature: number,
+  weather: string
+): string => {
+  if (weather === "Rain") {
+    return "나가는길에 우산 꼭 챙겨요";
+  } else if (weather === "Snow") {
+    return "우산 챙기구 걸을때 조심해요";
+  }
+
   if (temperature < 0) {
-    return "영하 온도 어 추워";
-  } else if (temperature < 5) {
-    return "5도도 안되네 어 추워";
-  } else if (temperature < 10) {
-    return "10도도 안돼 어추워";
-  } else if (temperature < 15) {
-    return "15도도 안돼 어추워";
+    return "덜덜덜 이가 떨리도록 추워요";
+  } else if (temperature < 7) {
+    return "덜덜덜 오늘은 패딩이 필수에요";
+  } else if (temperature < 14) {
+    return "방심하지 마요. 겉옷을 꼭 챙겨요";
+  } else if (temperature < 20) {
+    return "완벽하군. 산책하기 딱 좋아요";
+  } else if (temperature < 25) {
+    return "따뜻한 오늘, 피크닉을 부르는 날이에요";
   } else {
-    return "15도는 넘네 어추워";
+    return "에어컨아 살려줘";
   }
 };

@@ -34,8 +34,8 @@ const loadPrevWeather = (onFetch) => {
   }
 };
 
-const formatWeather = (temperature: number) => {
-  const description = getWeatherInKor(temperature);
+const formatWeather = (temperature: number, weather: string) => {
+  const description = getWeatherInKor(temperature, weather);
   return [`현재 ${temperature} `, description];
 };
 
@@ -71,8 +71,10 @@ const fetchWeather = async (coords, onFetch) => {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=metric&lang=kr`
     );
+    console.log(response.data);
     const temperature = Math.round(response.data.main.temp);
-    const weather = formatWeather(temperature);
+    const weatherEng = response.data.weather.main;
+    const weather = formatWeather(temperature, weatherEng);
     onFetch(...weather);
 
     localStorage.setItem("latitude", coords.latitude);

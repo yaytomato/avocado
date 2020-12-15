@@ -23,7 +23,7 @@ const WeatherUtil: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div className="w-50 flex items-center">
+    <div className="flex items-center">
       <img src={contents.icon} alt="날씨 아이콘" className="h-3 w-3 mr-3" />
       <p>
         {temperature}
