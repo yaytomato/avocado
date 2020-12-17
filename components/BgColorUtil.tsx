@@ -28,7 +28,7 @@ const BgColorUtil: React.FC = () => {
   );
 
   return (
-    <div className="pt-5 flex justify-center">
+    <div className="flex">
       <BgChangeBtn id={0} className="bg-yellow-300" />
       <BgChangeBtn id={1} className="bg-pink-300 ml-1.5" />
       <BgChangeBtn id={2} className="bg-blue-300 ml-1.5" />

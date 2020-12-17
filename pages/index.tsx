@@ -46,10 +46,9 @@ const Home: React.FunctionComponent<Props> = () => {
 
   return (
     <Layout loading={loading}>
-      <section>
-        <BgColorUtil />
+      <section className="pt-13.5">
         <img
-          className="h-27 mt-13.5 mx-auto cursor-pointer"
+          className="h-27 mx-auto cursor-pointer"
           src={contents.logo}
           alt="아보카도 로고"
         />
