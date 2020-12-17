@@ -117,13 +117,10 @@ export const getMinuteInKor = (timeStr: string): string => {
   return minuteInKor;
 };
 
-export const getWeatherInKor = (
-  temperature: number,
-  weather: string
-): string => {
-  if (weather === "Rain") {
+export const getWeatherInKor = (temperature: number, sky: string): string => {
+  if (sky === "Rain") {
     return "나가는길에 우산 꼭 챙겨요";
-  } else if (weather === "Snow") {
+  } else if (sky === "Snow") {
     return "우산 챙기구 걸을때 조심해요";
   }
 

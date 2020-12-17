@@ -6,13 +6,13 @@ import { weatherUtil as contents } from "../constants/home";
 const WeatherUtil: React.FunctionComponent = () => {
   let mounted = true;
   const [temperature, setTemperature] = useState("");
-  const [description, setDescription] = useState("");
+  const [weather, setWeather] = useState("");
 
   useEffect(() => {
-    const onFetch = (t, d) => {
+    const onFetch = (t, w) => {
       if (mounted) {
         setTemperature(t);
-        setDescription(d);
+        setWeather(w);
       }
     };
     getWeather(onFetch);
@@ -27,7 +27,7 @@ const WeatherUtil: React.FunctionComponent = () => {
       <img src={contents.icon} alt="날씨 아이콘" className="icon mr-2" />
       <p>
         {temperature}
-        <span className="font-extrabold">{description}</span>
+        <span className="font-extrabold">{weather}</span>
       </p>
     </div>
   );
