@@ -26,17 +26,18 @@ export const getWeather = async (onFetch) => {
 };
 
 const loadPrevWeather = (onFetch) => {
-  const prev = localStorage.getItem("temperature");
-  if (prev) {
-    const data = prev.split(" ");
-    const weather = formatWeather(parseInt(data[0]));
+  const prevTemp = localStorage.getItem("temperature");
+  const prevSky = localStorage.getItem("sky");
+  if (prevTemp && prevSky) {
+    const pt = prevTemp.split(" ");
+    const weather = formatWeather(parseInt(pt[0]), prevSky);
     onFetch(...weather);
   }
 };
 
-const formatWeather = (temperature: number, weather: string) => {
-  const description = getWeatherInKor(temperature, weather);
-  return [`현재 ${temperature} `, description];
+const formatWeather = (temperature: number, sky: string) => {
+  const weather = getWeatherInKor(temperature, sky);
+  return [`현재 ${temperature} `, weather];
 };
 
 const getPrevCoords = () => {
@@ -48,8 +49,8 @@ const getPrevCoords = () => {
 const isWeatherCached = () => {
   const prev = localStorage.getItem("temperature");
   if (prev) {
-    const data = prev.split(" ");
-    const timestamp = moment(data[1]);
+    const p = prev.split(" ");
+    const timestamp = moment(p[1]);
     const now = moment();
 
     // NOTE: cache weather data for 6 hours
@@ -73,14 +74,15 @@ const fetchWeather = async (coords, onFetch) => {
     );
     console.log(response.data);
     const temperature = Math.round(response.data.main.temp);
-    const weatherEng = response.data.weather.main;
-    const weather = formatWeather(temperature, weatherEng);
+    const sky = response.data.weather.main;
+    const weather = formatWeather(temperature, sky);
     onFetch(...weather);
 
     localStorage.setItem("latitude", coords.latitude);
     localStorage.setItem("longitude", coords.longitude);
     const timestamp = moment().toISOString(true);
     localStorage.setItem("temperature", `${temperature} ${timestamp}`);
+    localStorage.setItem("sky", sky);
   } catch (error) {
     failToFetchWeather(onFetch);
   }
