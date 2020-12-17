@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import { Article } from "../constants/types";
 import { articleCard as contents } from "../constants/global";
@@ -14,7 +15,13 @@ const ArticleCard: React.FunctionComponent<Props> = ({
   article: { url, img, title, category, author },
   randomMask = false,
 }) => (
-  <div className="mt-14 text-center">
+  <motion.div
+    whileHover={{
+      scale: 1.04,
+      transition: { duration: 0.4 },
+    }}
+    className="mt-14 text-center"
+  >
     <a href={url}>
       <img
         src={img}
@@ -36,7 +43,7 @@ const ArticleCard: React.FunctionComponent<Props> = ({
       {title}
     </a>
     <p className="mt-2 font-lg text-gray-600">by {author}</p>
-  </div>
+  </motion.div>
 );
 
 export default ArticleCard;
