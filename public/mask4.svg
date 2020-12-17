@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
-  <g id="그룹_176" data-name="그룹 176" transform="translate(-100 -381)">
-    <rect id="사각형_309" data-name="사각형 309" width="300" height="300" transform="translate(100 381)" fill="none"/>
-    <path id="패스_723" data-name="패스 723" d="M15165.967,3996.715c-23.29.946-56.849,90.407-60.874,117.624-7.8,52.745,111.66,96.75,161.916,79.553s46.329-128.965,39.106-148.339C15295.139,4016.109,15195.224,3995.527,15165.967,3996.715Z" transform="translate(-14957.729 -3566)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="237" height="240" viewBox="0 0 237 240">
+  <g id="그룹_1987" data-name="그룹 1987" transform="translate(-0.459)">
+    <rect id="사각형_309" data-name="사각형 309" width="237" height="240" transform="translate(0.459)" fill="none"/>
+    <path id="패스_723" data-name="패스 723" d="M15151.188,3996.705c-17.671.753-43.128,71.963-46.181,93.626-5.916,41.983,84.7,77.009,122.83,63.323s35.146-102.653,29.664-118.075C15249.175,4012.143,15173.379,3995.76,15151.188,3996.705Z" transform="translate(-15063.87 -3957.153)"/>
   </g>
 </svg>

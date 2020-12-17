@@ -24,10 +24,10 @@ const SearchBar: React.FunctionComponent = () => {
   };
 
   return (
-    <div className="mt-7 w-170 mx-auto">
+    <div className="mt-5 w-126 mx-auto">
       <div className="flex">
         <PlatformBtn id="naver">네이버</PlatformBtn>
-        <PlatformBtn id="google" className="ml-5">
+        <PlatformBtn id="google" className="ml-4">
           구글
         </PlatformBtn>
       </div>

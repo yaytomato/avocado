@@ -15,7 +15,7 @@ const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
   return (
     <div className="nav-bar">
       <div className="flex items-center">
-        <p className="text-2xl">
+        <p className="font-lg">
           <span className="font-extrabold">이틀</span>마다 돌아오는{" "}
           <span className="font-extrabold">네개</span>의 건강
         </p>
@@ -26,7 +26,7 @@ const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
       </div>
 
       <Link href="/archive">
-        <nav className="text-2xl text-gray-500 cursor-pointer">
+        <nav className="font-lg text-gray-500 cursor-pointer">
           {contents.toArchive}
         </nav>
       </Link>

@@ -11,7 +11,7 @@ const TimeUtil: React.FunctionComponent = () => {
 
   return (
     <div className="flex items-center">
-      <img src={contents.icon} alt="시간 아이콘" className="h-3 w-3 mr-3" />
+      <img src={contents.icon} alt="시간 아이콘" className="icon mr-2" />
       <p>
         {getTimeMeridiem(time)} {getHourInKor(time)}{" "}
         <span className="font-extrabold">{getMinuteInKor(time)}</span>분

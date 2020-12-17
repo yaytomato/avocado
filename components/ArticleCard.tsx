@@ -14,7 +14,7 @@ const ArticleCard: React.FunctionComponent<Props> = ({
   article: { url, img, title, category, author },
   randomMask = false,
 }) => (
-  <div className="mt-10 text-center">
+  <div className="mt-14 text-center">
     <a href={url}>
       <img
         src={img}
@@ -24,7 +24,7 @@ const ArticleCard: React.FunctionComponent<Props> = ({
         }`}
       />
     </a>
-    <div className="mt-8 flex justify-center items-center">
+    <div className="mt-4 flex justify-center items-center">
       <img
         src={contents[category]}
         alt="아티클 아이콘"
@@ -32,10 +32,10 @@ const ArticleCard: React.FunctionComponent<Props> = ({
       />
       <p className="font-extrabold">{category}</p>
     </div>
-    <a href={url}>
-      <p className="mt-3 text-2xl font-bold">{title}</p>
+    <a href={url} className="block mt-2 font-lg font-bold">
+      {title}
     </a>
-    <p className="mt-3 text-lg text-gray-600">by {author}</p>
+    <p className="mt-2 font-lg text-gray-600">by {author}</p>
   </div>
 );
 

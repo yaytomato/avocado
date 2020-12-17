@@ -24,7 +24,7 @@ const WeatherUtil: React.FunctionComponent = () => {
 
   return (
     <div className="flex items-center">
-      <img src={contents.icon} alt="날씨 아이콘" className="h-3 w-3 mr-3" />
+      <img src={contents.icon} alt="날씨 아이콘" className="icon mr-2" />
       <p>
         {temperature}
         <span className="font-extrabold">{description}</span>
