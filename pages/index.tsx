@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import Layout from "../components/Layout";
-import BgColorUtil from "../components/BgColorUtil";
 import SearchBar from "../components/SearchBar";
 import DateUtil from "../components/DateUtil";
 import TimeUtil from "../components/TimeUtil";
