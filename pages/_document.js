@@ -1,12 +1,11 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-import { GA_TRACKING_ID, GTM_ID } from "../helper";
-
 export default class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
+          <title>새 탭</title>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
