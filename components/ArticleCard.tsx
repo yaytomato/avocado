@@ -5,14 +5,14 @@ import { Article } from "../constants/types";
 import { articleCard as contents } from "../constants/global";
 
 interface Props {
-  id: number;
+  order: number;
   article: Article;
   randomMask?: boolean;
 }
 
 const ArticleCard: React.FunctionComponent<Props> = ({
-  id,
-  article: { url, img, title, category, author },
+  order,
+  article: { id, url, img, title, category, author },
   randomMask = false,
 }) => (
   <motion.div
@@ -24,11 +24,12 @@ const ArticleCard: React.FunctionComponent<Props> = ({
   >
     <a href={url}>
       <img
+        id={`click_${id}_img`}
         src={img}
         alt={title}
         className={`thumbnail-${
-          randomMask ? Math.round(Math.random() * 3) : id % 4
-        }`}
+          randomMask ? Math.round(Math.random() * 3) : order % 4
+        } gtm-article`}
       />
     </a>
     <div className="mt-4 flex justify-center items-center">
@@ -39,7 +40,11 @@ const ArticleCard: React.FunctionComponent<Props> = ({
       />
       <p className="font-extrabold">{category}</p>
     </div>
-    <a href={url} className="block mt-2 font-lg font-bold">
+    <a
+      href={url}
+      id={`click_${id}_title`}
+      className={`block mt-2 font-lg font-bold gtm-article`}
+    >
       {title}
     </a>
     <p className="mt-2 font-lg text-gray-600">by {author}</p>

@@ -14,7 +14,12 @@ const ArticleCardList: React.FunctionComponent<Props> = ({
 }) => (
   <div className="article-card-list">
     {articles.map((article, i) => (
-      <ArticleCard key={i} id={i} article={article} randomMask={randomMask} />
+      <ArticleCard
+        key={article.id}
+        order={i}
+        article={article}
+        randomMask={randomMask}
+      />
     ))}
   </div>
 );
