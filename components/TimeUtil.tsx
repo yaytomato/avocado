@@ -14,7 +14,7 @@ const TimeUtil: React.FunctionComponent = () => {
       <img src={contents.icon} alt="시간 아이콘" className="icon mr-2" />
       <p>
         {getTimeMeridiem(time)} {getHourInKor(time)}{" "}
-        <span className="font-extrabold">{getMinuteInKor(time)}</span>분
+        <span className="font-extrabold">{getMinuteInKor(time)}분</span>
       </p>
     </div>
   );
