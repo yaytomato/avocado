@@ -1,14 +1,16 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from "react";
-import Link from "next/link";
 import moment from "moment";
 
 import { navBar as contents } from "../constants/home";
 
 interface Props {
   releaseDate: string;
+  toArchive: () => void;
 }
 
-const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
+const NavBar: React.FunctionComponent<Props> = ({ releaseDate, toArchive }) => {
   const today = moment();
   const isTodayReleaseDate = today.isSame(moment(releaseDate), "d");
 
@@ -25,11 +27,9 @@ const NavBar: React.FunctionComponent<Props> = ({ releaseDate }) => {
         </span>
       </div>
 
-      <Link href="/archive">
-        <nav className="font-lg text-gray-500 cursor-pointer">
-          {contents.toArchive}
-        </nav>
-      </Link>
+      <nav className="font-lg text-gray-500 cursor-pointer" onClick={toArchive}>
+        {contents.toArchive}
+      </nav>
     </div>
   );
 };

@@ -1,75 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 
-import Layout from "../components/Layout";
-import SearchBar from "../components/SearchBar";
-import DateUtil from "../components/DateUtil";
-import TimeUtil from "../components/TimeUtil";
-import WeatherUtil from "../components/WeatherUtil";
+import Home from "../components/Home";
+import Archive from "../components/Archive";
+import * as gtag from "../helper";
 
-import NavBar from "../components/NavBar";
-import ArticleCardList from "../components/ArticleCardList";
-import Footer from "../components/Footer";
-
-import { dateSelector } from "../reducers/time";
-import { index as contents } from "../constants/home";
-import { Article } from "../constants/types";
-import { fetchLateReleases } from "../gateway/articles";
-
-interface Props {}
-
-const Home: React.FunctionComponent<Props> = () => {
-  // ANCHOR: fetch articles
-  let mounted = true;
-  const today = useSelector(dateSelector);
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [releaseDate, setReleaseDate] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true);
+const Avocado = () => {
+  const home = 0;
+  const archive = 1;
+  const [page, setPage] = useState(home);
 
   useEffect(() => {
-    if (today) {
-      const onFetch = (filtered, latestReleaseDate) => {
-        if (mounted) {
-          setArticles(filtered);
-          setReleaseDate(latestReleaseDate);
-          setLoading(false);
-        }
-      };
-      fetchLateReleases(today, onFetch);
+    if (page === home) {
+      gtag.pageview("/");
+    } else {
+      gtag.pageview("/archive");
     }
+  }, [page]);
 
-    return () => {
-      mounted = false;
-    };
-  }, [today]);
-
-  return (
-    <Layout loading={loading}>
-      <section className="pt-10">
-        <img
-          className="h-20 mx-auto cursor-pointer"
-          src={contents.logo}
-          alt="아보카도 로고"
-        />
-      </section>
-
-      <section>
-        <SearchBar />
-        <div className="mt-5 flex w-126 mx-auto justify-between">
-          <DateUtil />
-          <TimeUtil />
-          <WeatherUtil />
-        </div>
-      </section>
-
-      <section>
-        <NavBar releaseDate={releaseDate} />
-        <ArticleCardList articles={articles} />
-      </section>
-
-      <Footer />
-    </Layout>
-  );
+  if (page === home) {
+    return <Home toArchive={() => setPage(archive)} />;
+  } else {
+    return <Archive toHome={() => setPage(home)} />;
+  }
 };
 
-export default Home;
+export default Avocado;

@@ -25,7 +25,7 @@ const fetchArticles = (today, filter, onFetch, onlyFirstRow = false) => {
     const filtered = [];
     let pushRest = false;
 
-    for (let i = 6; i < cells.length; i += 6) {
+    for (let i = 7; i < cells.length; i += 7) {
       const rd = cells[i].content.$t;
       if (pushRest || filter(rd, lrd)) {
         const category = cells[i + 1].content.$t;
@@ -37,6 +37,7 @@ const fetchArticles = (today, filter, onFetch, onlyFirstRow = false) => {
           author: cells[i + 3].content.$t,
           url: cells[i + 4].content.$t,
           img: cells[i + 5].content.$t,
+          id: cells[i + 6].content.$t,
         });
 
         // NOTE: fetch all the past articles
